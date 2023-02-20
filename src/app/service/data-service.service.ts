@@ -1,4 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -6,8 +7,9 @@ import { Injectable, EventEmitter } from '@angular/core';
 export class DataServiceService {
   constructor() {}
 
-  dataEmitter = new EventEmitter<string>();
+  // dataEmitter = new EventEmitter<string>();
+  dataEmitter = new Subject<string>();
   raisedDataEventEmitter(data: string): void {
-    this.dataEmitter.emit(data);
+    this.dataEmitter.next(data);
   }
 }
