@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { from, observable, Observable, of } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
+import { DataServiceService } from './service/data-service.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,7 @@ import { filter, map } from 'rxjs/operators';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  constructor(dataService: DataServiceService) {}
   // Using Constructor
 
   // myObservable = new Observable((observer) => {
@@ -68,19 +70,19 @@ export class AppComponent {
 
   //of operator
 
-  array1 = [1, 2, 3, 4, 5];
+  // array1 = [1, 2, 3, 4, 5];
   // myObservable = of(this.array1, 'Hello');
 
   //from operator
 
-  myObservable = from(this.array1).pipe(
-    map((val) => {
-      return val * 5;
-    }),
-    filter((val) => {
-      return val >= 11;
-    })
-  );
+  // myObservable = from(this.array1).pipe(
+  //   map((val) => {
+  //     return val * 5;
+  //   }),
+  //   filter((val) => {
+  //     return val >= 11;
+  //   })
+  // );
 
   // TransformedObservable = this.myObservable.pipe(
   //   map((val) => {
@@ -98,16 +100,16 @@ export class AppComponent {
   // );
 
   ngOnInit() {
-    this.myObservable.subscribe(
-      (val) => {
-        console.log(val);
-      },
-      (error) => {
-        alert(error);
-      },
-      () => {
-        alert('Complete');
-      }
-    );
+    // this.myObservable.subscribe(
+    //   (val) => {
+    //     console.log(val);
+    //   },
+    //   (error) => {
+    //     alert(error);
+    //   },
+    //   () => {
+    //     alert('Complete');
+    //   }
+    // );
   }
 }
