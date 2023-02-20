@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { from, observable, Observable, of } from 'rxjs';
+import { from, interval, observable, Observable, of } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { DataServiceService } from './service/data-service.service';
 
@@ -99,6 +99,8 @@ export class AppComponent {
   //   })
   // );
 
+  CounterObs = interval(1000);
+  counterSub;
   ngOnInit() {
     // this.myObservable.subscribe(
     //   (val) => {
@@ -111,5 +113,14 @@ export class AppComponent {
     //     alert('Complete');
     //   }
     // );
+  }
+
+  Subscribe(): void {
+    this.counterSub = this.CounterObs.subscribe((val) => {
+      console.log(val);
+    });
+  }
+  UnSubscribe(): void {
+    this.counterSub.unsubscribe();
   }
 }
