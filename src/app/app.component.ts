@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { from, observable, Observable, of } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -72,7 +73,29 @@ export class AppComponent {
 
   //from operator
 
-  myObservable = from(this.array1);
+  myObservable = from(this.array1).pipe(
+    map((val) => {
+      return val * 5;
+    }),
+    filter((val) => {
+      return val >= 11;
+    })
+  );
+
+  // TransformedObservable = this.myObservable.pipe(
+  //   map((val) => {
+  //     return val * 5;
+  //   }),
+  //   filter((val) => {
+  //     return val >= 11;
+  //   })
+  // );
+
+  // FilteredObservable = this.TransformedObservable.pipe(
+  //   filter((val) => {
+  //     return val >= 11;
+  //   })
+  // );
 
   ngOnInit() {
     this.myObservable.subscribe(
